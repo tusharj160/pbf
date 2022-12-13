@@ -1,0 +1,42 @@
+<form class="row g-3">
+    <h4>Select merchant</h4>
+    <div class="col-md-6">
+    <mat-form-field  appearance="outline">
+      <mat-label>Number</mat-label>
+      <input type="text"
+             placeholder="Select"
+             aria-label="Merchant"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)='getPosts($event.option.value)'>
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    </div>
+  </form>
+  <ng-container *ngIf="merchant">
+    <h4>Linked devices</h4>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+       Device 1
+        <button *ngIf="!unlockKeyGenerated" type="button" (click)="click()" class="btn btn-primary">Unlock</button>
+        <h4 *ngIf="unlockKeyGenerated">Unlock key : 9e51f5 
+          <mat-icon aria-hidden="false" aria-label="Example refresh icon" fontIcon="refresh">refresh</mat-icon>
+      </h4>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+          Device 2
+           <button type="button" class="btn btn-primary">Unlock</button>
+         </li>
+         <li class="list-group-item d-flex justify-content-between align-items-center">
+          Device 3
+           <button type="button" class="btn btn-primary">Unlock</button>
+         </li>
+    </ul>
+    <button type="button" class="btn btn-secondary">Link device</button>
+  </ng-container>
+  
+    
